@@ -67,7 +67,6 @@ module.exports = {
       new Comment({
         _id: commentId,
         user: objectId,
-        //user: objectId,
         createdAt: new Date().toISOString(),
         rating: rating,
         title: title,
