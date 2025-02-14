@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
-const {Schema} = require('mongoose')
-
+const {model, Schema} = require('mongoose')
 // можно и так:
-//const {model, Schema} = require('mongoose')
+//const {Schema} = require('mongoose')
 
 mongoose.Schema.Types.String.set('trim', true);
 
