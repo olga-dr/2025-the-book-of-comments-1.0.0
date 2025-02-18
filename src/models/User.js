@@ -28,5 +28,5 @@ const userSchema = new Schema ({
 module.exports = model('User', userSchema)
  
 // можно и так:
-// const User = mongoose.model('User', userSchema)
-// module.exports = User
+ //const User = mongoose.model('User', userSchema)
+ //module.exports = User
