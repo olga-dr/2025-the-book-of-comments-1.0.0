@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
-const {Schema} = require('mongoose')
-
+const {model, Schema} = require('mongoose')
 // можно и так:
-//const {model, Schema} = require('mongoose')
+//const {Schema} = require('mongoose')
 
 mongoose.Schema.Types.String.set('trim', true);
 
@@ -29,5 +28,5 @@ const userSchema = new Schema ({
 module.exports = model('User', userSchema)
  
 // можно и так:
-// const User = mongoose.model('User', userSchema)
-// module.exports = User
+ //const User = mongoose.model('User', userSchema)
+ //module.exports = User
