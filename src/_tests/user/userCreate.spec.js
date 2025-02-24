@@ -1,41 +1,35 @@
 const {expect} = require('chai')
-// пока не надо const User = require ('../../models/User')
-const request = require ('supertest')
+const User = require ('../../models/User')
+const gqlRequest = require('../gqlRequest')
+const {user ,userCreateQ } = require('./data')
+
+let postData = null
+let respData = null
+
+before('DELETE MANY',()=>{
+           User.deleteMany({})
+           console.log ('users are deleted');
+    })
 
 describe ('USER CREATE',()=>{
     describe('USER CREATE -POSITIVE TESTS',()=>{
-        it('user create',(done)=>{
-            request( 'http://localhost:5000/')
-            .post('/')
-            .send({
-                query:`mutation UserCreate($userInput: UserFields) {
-                       userCreate(userInput: $userInput) {
-                       firstName
-                       lastName
-                      _id
-                       }
-                       }`,
-                variables:{
-                         userInput: {
-                         firstName: 'firstName',
-                         lastName: 'lastName'
-                         }
-                        }
-            })
-                
-                
-                
-            
+        it('user create' ,(done)=>{
+            postData = {
+                query: userCreateQ,
+                variables: user
+            }
+           
+            gqlRequest(postData)
             .expect(200)
             .end((err,res) =>{
-                if (err) return done(err);
-                   const respData = res.body.data.userCreate ;
+                if (err) return done(err)
+                   respData = res.body.data.userCreate
+                   console.log(respData) 
                    expect(respData.firstName).eq('firstName')
                    expect(respData.lastName).eq('lastName')
                console.log(respData);
                 done();
             })
-
         })
     })
 
@@ -44,8 +38,7 @@ describe ('USER CREATE',()=>{
         })
 
     }
-)  
-
+)
 
 
 
